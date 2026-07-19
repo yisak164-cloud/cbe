@@ -1,0 +1,35 @@
+.header-container {
+    position: relative;
+    width: 100vw;
+    z-index: -1;
+    background-color: blueviolet;
+    height: 40vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10px;
+}
+
+.user-info {
+    display: flex;
+    gap: 10px;
+    color: white;
+}
+
+.user-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name span:nth-child(1) {
+    color: rgb(223, 223, 223);
+}
+
+.icon-container {
+    background-color: rgb(176, 99, 248);
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

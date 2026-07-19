@@ -1,0 +1,149 @@
+.menu-container {
+    background-color: rgb(241, 241, 241);
+    margin-top: -140px;
+    padding-top: 40%;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    border-top-left-radius: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: goldenrod;
+}
+
+.card-wrapper{
+    display: flex;
+    flex-direction:column ;
+    grid-area: 10px;
+    padding-left:10px ;
+    padding-right:10px ;
+    overflow-y: scroll;
+}
+
+.recent-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.4rem;
+}
+
+.recent-icon-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  
+    /* background-color: red; */
+}
+
+.recent-icon-container span {
+    color: rgb(1, 1, 104);
+}
+
+.recent-icon {
+    color: purple;
+    background-color: rgba(255, 210, 255, 0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 30%;
+    border: 1px solid grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transaction-container{
+    background-color: white;
+    width: 92%;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 3px 5px rgb(233, 229, 221);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transfer-icon{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.transfer-icon div:nth-child(1) {
+background-color: rgba(236, 89, 138, 0.3);
+height: 40px;
+width: 40px;
+border-radius: 50%;
+color: rgb(218, 50, 50);
+display: flex;
+justify-content: center;
+align-items: center;
+font-weight: bold;
+}
+
+.transfer-icon span{
+    color: purple;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.vertical-line{
+    border: 2px solid gray;
+    height: 50px;
+    width: 1px;
+}
+
+.recieve-icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+.recieve-icon div :nth-child(1){
+    background-color: rgb(97, 167, 97);
+height: 50px;
+width: 50px;
+border-radius: 50%;
+color: green;
+display: flex;
+justify-content: center;
+align-items: center;
+font-weight: bold;
+}
+
+.recieve-icon span{
+    color: purple;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.menu-cards{
+   display: grid;
+   grid-template-columns: repeat(2,1fr);
+   gap: 20px;
+   padding: 20px;
+
+}
+
+.menu-card{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: rebeccapurple;
+    font-weight: bold;
+
+}
+

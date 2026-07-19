@@ -1,0 +1,14 @@
+.parent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 430px;
+}
+
+.card {
+  width: 100px;
+
+  box-shadow: 5px 5px 6px rgba(121, 121, 121, 0.3);
+  height: 80px;
+  border-radius: 10px;
+}
