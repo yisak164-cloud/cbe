@@ -1,7 +1,7 @@
 import axios from "axios";
 // create api 
 export const api = axios.create({
-    baseURL: "http://localhost:3000/api",
+    baseURL: "https://cbe-lwgg.vercel.app/api",
     withCredentials: true,
     timeout: 5000
 })
