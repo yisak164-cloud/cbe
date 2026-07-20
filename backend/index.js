@@ -28,6 +28,11 @@ app.get("/api/viewBalance", (req, res) => {
    return res.status(200).send("your balance is 200")
 })
 
+app.get("/test", (req, res) => {
+   console.log(req.socket.remoteAddress)
+   return res.status(200).send("your balance is 200")
+})
+
 
 app.get("/api/confirmAccount/:account", authMiddleware, async (req, res) => {
    try {
