@@ -9,7 +9,7 @@ export default defineConfig({
     proxy: {
      
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://cbe-lwgg.vercel.app',
         changeOrigin: true,
       },
     }
