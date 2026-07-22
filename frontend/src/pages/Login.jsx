@@ -23,8 +23,10 @@ function Login() {
             return
         }
         try {
-            const response = await api.post("/login",
-                { phone: phone, pin: pin, headers: { withCredentials: true } })
+            // ✅ Correct — withCredentials is in the config (3rd argument)
+const response = await api.post("/login",
+    { phone: phone, pin: pin },
+    { withCredentials: true })
             localStorage.setItem("user", JSON.stringify({
                 account: response.data.account,
                 balance: response.data.balance,
