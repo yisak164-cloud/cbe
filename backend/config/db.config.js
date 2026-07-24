@@ -5,7 +5,8 @@ dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 async function DB() {
     try {
-        await mongoose.connect(process.env.DB_URL);
+        const url = process.env.DB_URL.replace('mongodb.net/', 'mongodb.net/cbe')
+        await mongoose.connect(url);
         console.log("MongoDB Connected ✅");
     } catch (err) {
         console.log("Connection failed ❌", err);
