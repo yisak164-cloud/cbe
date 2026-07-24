@@ -17,8 +17,8 @@ const app = express()   //create app
 app.use(express.json())  //midlle ware
 app.use(cookieParser())
 app.use(cors({
-   origin: "*",
-   credentials: false
+   origin: "*"
+   
 }))
 DB()
 
