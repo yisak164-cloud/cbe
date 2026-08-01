@@ -58,10 +58,10 @@ app.post("/api/transactions", authMiddleware, async (req, res) => {
          return res.status(401).send({message:"invalidpin"})
        }
      
-      return
+      
      const receiverAccountData = await Account.findOne({ accountNumber: receiverAccount })
    .select("fullName balance phoneNumber accountNumber accountStatus")
-      if (receiverAccount == null) {
+      if (receiverAccountData == null) {
          return res.status(404).send({ message: "account not found" })
       }
       if (receiverAccountData.accountStatus != "open") {
@@ -85,7 +85,7 @@ app.post("/api/transactions", authMiddleware, async (req, res) => {
          amount: amount,
          reason: "transfer",
          senderId: req.id,
-         recevierId: account._id,
+         recevierId: receiverAccountData._id,
          receipt: "image.png"
       })
       transaction.save()
