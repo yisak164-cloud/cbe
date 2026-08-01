@@ -23,7 +23,7 @@ app.use(cors({
 await DB()
 
 const updateTest= await Account.findOneAndUpdate( { accountNumber: "1000611277371" },{$set:{balance:700}},{new:true})
-console.log(updateTest)
+// console.log(updateTest)
 
 app.get("/api/viewBalance", (req, res) => {
    console.log(req.socket.remoteAddress)
@@ -49,6 +49,7 @@ app.get("/api/confirmAccount/:account", authMiddleware, async (req, res) => {
    }
 })
 app.post("/api/transactions", authMiddleware, async (req, res) => {
+   console.log("Transactions route was hit");
    try {
       const senderId = req.id
       const { receiverAccount, amount,pin} = req.body
@@ -57,10 +58,12 @@ app.post("/api/transactions", authMiddleware, async (req, res) => {
        if(!pinMatched){
          return res.status(401).send({message:"invalidpin"})
        }
-     
+     console.log("Receiver account from request:", receiverAccount);
+console.log("Type:", typeof receiverAccount);
       
      const receiverAccountData = await Account.findOne({ accountNumber: receiverAccount })
    .select("fullName balance phoneNumber accountNumber accountStatus")
+   console.log("Receiver account found:", receiverAccountData);
       if (receiverAccountData == null) {
          return res.status(404).send({ message: "account not found" })
       }
