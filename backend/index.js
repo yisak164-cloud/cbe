@@ -72,7 +72,7 @@ app.post("/api/transactions", authMiddleware, async (req, res) => {
       if (senderAccount.balance - amount < 100) {
          return res.status(400).send({ message: "insuficeint balance" })
       }
-      receiverAccountData.balance = account.balance + Number(amount)
+      receiverAccountData.balance = receiverAccountData.balance + Number(amount)
       senderAccount.balance = senderAccount.balance - Number(amount)
       await Promise.all(
          [
