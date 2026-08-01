@@ -20,8 +20,10 @@ app.use(cors({
    origin: "*"
    
 }))
-DB()
+await DB()
 
+const updateTest= await Account.findOneAndUpdate( { accountNumber: "1000611277371" },{$set:{balance:700}},{new:true})
+console.log(updateTest)
 
 app.get("/api/viewBalance", (req, res) => {
    console.log(req.socket.remoteAddress)
@@ -62,7 +64,7 @@ app.post("/api/transactions", authMiddleware, async (req, res) => {
       if (receiverAccount == null) {
          return res.status(404).send({ message: "account not found" })
       }
-      if (receiverAccount.accountStatus != "open") {
+      if (receiverAccountData.accountStatus != "open") {
          return res.status(400).send({ message: "account is not active" })
       }
       // check if sender account balamce is sufficient
@@ -70,12 +72,12 @@ app.post("/api/transactions", authMiddleware, async (req, res) => {
       if (senderAccount.balance - amount < 100) {
          return res.status(400).send({ message: "insuficeint balance" })
       }
-      receiverAccount.balance = account.balance + Number(amount)
+      receiverAccountData.balance = account.balance + Number(amount)
       senderAccount.balance = senderAccount.balance - Number(amount)
       await Promise.all(
          [
             senderAccount.save(),
-            receiverAccount.save()
+            receiverAccountData.save()
          ])
       const reference = Math.floor(Math.random() * 9000000)
       const transaction = new Transaction({
