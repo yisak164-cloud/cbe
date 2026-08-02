@@ -25,7 +25,10 @@ await DB()
 
 const updateTest= await Account.findOneAndUpdate( { accountNumber: "1000611277371" },{$set:{balance:700}},{new:true})
 // console.log(updateTest)
-
+app.use((req, res, next) => {
+    console.log(req.method, req.url);
+    next();
+});
 app.get("/api/viewBalance", (req, res) => {
    console.log(req.socket.remoteAddress)
    return res.status(200).send("your balance is 200")
