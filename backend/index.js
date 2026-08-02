@@ -17,7 +17,8 @@ const app = express()   //create app
 app.use(express.json())  //midlle ware
 app.use(cookieParser())
 app.use(cors({
-   origin: "*"
+   origin: "cbe-topaz.vercel.app",
+   credentials: true
    
 }))
 await DB()
@@ -198,8 +199,18 @@ app.post("/api/login", async (req, res) => {
       if (!isMatch) {
          return res.status(401).json({ message: "invalid credentials pin" })
       }
-      const token = jwt.sign({ id: account._id }, process.env.SECRET_KEY, { expiresIn: "1d" })
-      res.cookie("extension-cookie", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true })
+     const token = jwt.sign(
+    { id: account._id },
+    process.env.SECRET_KEY,
+    { expiresIn: "1d" }
+);
+
+res.cookie("extension-cookie", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 24 * 60 * 60 * 1000
+});
       return res.status(200).send({ message: "login success", account: account.accountNumber, balance: account.balance, fullName: account.fullName })
       // compair pin
    }

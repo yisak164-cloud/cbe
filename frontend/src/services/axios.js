@@ -1,7 +1,7 @@
 import axios from "axios"  // ← add this line
 
 export const api = axios.create({
-    baseURL: "https://cbe-backend-lovat.vercel.app/api",
+    baseURL: "cbe-backend-lovat.vercel.app",
     withCredentials: false,
     timeout: 5000
 })
