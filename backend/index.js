@@ -48,7 +48,7 @@ app.get("/api/confirmAccount/:account", authMiddleware, async (req, res) => {
       return res.status(500).send({ error: "someting went wrong" })
    }
 })
-app.post("/api/transactions",  async (req, res) => {
+app.post("/api/transactions", authMiddleware, async (req, res) => {
    console.log("Transactions route was hit");
    try {
       const senderId = req.id
