@@ -17,7 +17,7 @@ const app = express()   //create app
 app.use(express.json())  //midlle ware
 app.use(cookieParser())
 app.use(cors({
-   origin: "https://cbe-topaz.vercel.app",
+   origin: "https://cbe-frontend-three.vercel.app",
    credentials: true
    
 }))
