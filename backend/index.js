@@ -46,11 +46,6 @@ app.get("/test", (req, res) => {
 
 
 app.get("/api/confirmAccount/:account", 
-   (req, res, next) => {
-      console.log("Cookies:", req.cookies);
-      next();
-   }, 
-   authMiddleware, 
    async (req, res) => {
       console.log("Route reached");
 
