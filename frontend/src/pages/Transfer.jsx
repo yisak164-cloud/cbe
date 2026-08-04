@@ -34,7 +34,7 @@ function Transfer() {
       // 
         const response = await api.post(
             "/transactions",
-            { receiverAccountNumber: receiverAccount, amount, pin },
+            { receiverAccount: receiverAccount, amount, pin },
             { responseType: "blob" } // tell axios to expect binary (PDF) data, not JSON
         );
 
