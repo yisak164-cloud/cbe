@@ -40,22 +40,40 @@ app.get("/test", (req, res) => {
 })
 
 
-app.get("/api/confirmAccount/:account",", (req, res, next) => {
-    console.log("Cookies:", req.cookies);
-    next();
-}, authMiddleware, async (req, res) => {
-    console.log("Route reached"); => {
-   try {
-      const accountNumber = req.params.account
-      const account = await Account.findOne({ accountNumber: accountNumber })
-      if (!account) {
-         return res.status(404).send({ error: "account not exist" })
+app.get("/api/confirmAccount/:account", 
+   (req, res, next) => {
+      console.log("Cookies:", req.cookies);
+      next();
+   }, 
+   authMiddleware, 
+   async (req, res) => {
+      console.log("Route reached");
+
+      try {
+         const accountNumber = req.params.account;
+
+         const account = await Account.findOne({ 
+            accountNumber: accountNumber 
+         });
+
+         if (!account) {
+            return res.status(404).send({ 
+               error: "account not exist" 
+            });
+         }
+
+         return res.status(200).json({ 
+            accountHolder: account.fullName 
+         });
+
+      } catch (error) {
+         console.log(error);
+         return res.status(500).send({ 
+            error: "something went wrong" 
+         });
       }
-      return res.status(200).json({ accountHolder: account.fullName })
-   } catch (error) {
-      return res.status(500).send({ error: "someting went wrong" })
    }
-})
+);
 app.post("/api/transactions", authMiddleware, async (req, res) => {
     console.log(req.body);
    console.log("Transactions route was hit");
