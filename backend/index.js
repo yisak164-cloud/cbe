@@ -40,7 +40,11 @@ app.get("/test", (req, res) => {
 })
 
 
-app.get("/api/confirmAccount/:account", authMiddleware, async (req, res) => {
+app.get("/api/confirmAccount/:account",", (req, res, next) => {
+    console.log("Cookies:", req.cookies);
+    next();
+}, authMiddleware, async (req, res) => {
+    console.log("Route reached"); => {
    try {
       const accountNumber = req.params.account
       const account = await Account.findOne({ accountNumber: accountNumber })
