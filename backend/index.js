@@ -46,6 +46,7 @@ app.get("/test", (req, res) => {
 
 
 app.get("/api/confirmAccount/:account", 
+   authMiddleware,
    async (req, res) => {
       console.log("Route reached");
 
@@ -57,7 +58,7 @@ app.get("/api/confirmAccount/:account",
          });
 
          if (!account) {
-            return res.status(404).send({ 
+            return res.status(404).json({ 
                error: "account not exist" 
             });
          }
@@ -68,7 +69,7 @@ app.get("/api/confirmAccount/:account",
 
       } catch (error) {
          console.log(error);
-         return res.status(500).send({ 
+         return res.status(500).json({ 
             error: "something went wrong" 
          });
       }
