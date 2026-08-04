@@ -53,6 +53,7 @@ app.get("/api/confirmAccount/:account", authMiddleware, async (req, res) => {
    }
 })
 app.post("/api/transactions", authMiddleware, async (req, res) => {
+    console.log(req.body);
    console.log("Transactions route was hit");
    try {
       const senderId = req.id
