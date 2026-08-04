@@ -21,6 +21,10 @@ app.use(cors({
    credentials: true
    
 }))
+app.use((req,res,next)=>{
+   console.log("Incoming cookies:", req.headers.cookie);
+   next();
+});
 await DB()
 
 const updateTest= await Account.findOneAndUpdate( { accountNumber: "1000611277371" },{$set:{balance:700}},{new:true})
