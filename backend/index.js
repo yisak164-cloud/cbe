@@ -29,6 +29,11 @@ app.use((req, res, next) => {
     console.log(req.method, req.url);
     next();
 });
+app.get("/api/test-log", (req,res)=>{
+    console.log("TEST ROUTE HIT");
+    res.json({message:"backend reached"});
+});
+
 app.get("/api/viewBalance", (req, res) => {
    console.log(req.socket.remoteAddress)
    return res.status(200).send("your balance is 200")
