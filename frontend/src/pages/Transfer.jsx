@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { ChevronLeft, CreditCard, Delete, Check, Plus, Lock, Banknote, QrCode } from 'lucide-react'
 import '../styles/Transfer.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink,useNavigate } from 'react-router-dom'
 import { api } from '../services/axios'
 function Transfer() {
     const [activeTab, setActiveTab] = useState('other')
@@ -15,6 +15,7 @@ function Transfer() {
     const user = JSON.parse(localStorage.getItem("user"))
     const [pin, setPin] = useState("")
     const [pinConfirm, setPinConfirm] = useState(false)
+    const navigate = useNavigate();
     //handleing the pressed button at the input
     const handlePinPress = (digit) => {
         if (pin.length < 4) {
@@ -56,6 +57,7 @@ const handlePinConfirm = async () => {
         setPin("");
         setReceiverAccount("");
         setAmount("");
+        navigate("/home")
 
         alert("Transfer successful!");
 
