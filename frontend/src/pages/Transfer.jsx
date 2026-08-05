@@ -208,7 +208,7 @@ function Transfer() {
 
             {
                 pinConfirm && (<div className='pin-overlay' onClick={()=> setPinConfirm(false)}>
-                    <div className='pin-modal' onClick={(e)=>e.stopPropagation}>
+                    <div className='pin-modal' onClick={(e)=>e.stopPropagation()}>
                         <h2>Enter your PIN to confirm</h2>
                         <Lock />
                         <input type="password" id="pin" maxLength={4} value={pin} readOnly />
