@@ -24,49 +24,45 @@ function Transfer() {
     const handlePinDelete = () => {
         setPin(pin.slice(0, -1))
     }
-    const handlePinConfirm = async () => {
-        if (pin.length !== 4) {
-            alert("enter 4 digit pin")
-            return false
-        }
+const handlePinConfirm = async () => {
+    if (pin.length !== 4) {
+        alert("Enter a 4 digit PIN");
+        return;
+    }
 
-        // 
-      // 
-  try{      const response = await api.post(
+    try {
+        const response = await api.post(
             "/transactions",
-            
-            { receiverAccount: receiverAccount, amount, pin },
-            { responseType: "blob" } // tell axios to expect binary (PDF) data, not JSON
+            { receiverAccount, amount, pin },
+            { responseType: "blob" }
         );
 
-        // Create a temporary URL for the PDF blob
-        const pdfBlob = new Blob([response.data], { type: "application/pdf" });
+        const pdfBlob = new Blob([response.data], {
+            type: "application/pdf"
+        });
+
         const downloadUrl = window.URL.createObjectURL(pdfBlob);
-        setPinConfirm(false);
-setPin("");
-setReceiverAccount("");
-setAmount("");
-        alert("Transfer successful!");
-navigate("/home");}
-        catch(error) {
 
-        console.log(error);
-
-    }
-        
-
-        // Create a hidden link and trigger the download
         const link = document.createElement("a");
         link.href = downloadUrl;
-        link.setAttribute("download", "transaction-receipt.pdf"); // filename for the download
+        link.download = "transaction-receipt.pdf";
         document.body.appendChild(link);
         link.click();
 
-        // Cleanup
         link.remove();
         window.URL.revokeObjectURL(downloadUrl);
-        console.log(response)
+
+        setPinConfirm(false);
+        setPin("");
+        setReceiverAccount("");
+        setAmount("");
+
+        alert("Transfer successful!");
+
+    } catch (error) {
+        alert(error.response?.data?.message || "Something went wrong");
     }
+};
 
     const handleContinue = async () => {
         const cbeRegex = /^\d{13}$/;
