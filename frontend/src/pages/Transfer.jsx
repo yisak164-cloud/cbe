@@ -32,7 +32,7 @@ function Transfer() {
 
         // 
       // 
-        const response = await api.post(
+  try{      const response = await api.post(
             "/transactions",
             
             { receiverAccount: receiverAccount, amount, pin },
@@ -46,6 +46,14 @@ function Transfer() {
 setPin("");
 setReceiverAccount("");
 setAmount("");
+        alert("Transfer successful!");
+navigate("/home");}
+        catch(error) {
+
+        console.log(error);
+
+    }
+        
 
         // Create a hidden link and trigger the download
         const link = document.createElement("a");
