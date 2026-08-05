@@ -42,6 +42,10 @@ function Transfer() {
         // Create a temporary URL for the PDF blob
         const pdfBlob = new Blob([response.data], { type: "application/pdf" });
         const downloadUrl = window.URL.createObjectURL(pdfBlob);
+        setPinConfirm(false);
+setPin("");
+setReceiverAccount("");
+setAmount("");
 
         // Create a hidden link and trigger the download
         const link = document.createElement("a");
